@@ -1,15 +1,28 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 group 'org.cyrus'
 version '1.0-SNAPSHOT'
+
+jar {
+    dependsOn ':Web:jar'
+    manifest {
+        attributes('Main-Class': 'org.cyrus.impl.JDKCyrusWeb')
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+
+
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    api project(':Web')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
