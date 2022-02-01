@@ -39,6 +39,6 @@ public interface CyrusWebServerManager {
     }
 
     default Optional<User> getUser(InetSocketAddress address) {
-        return this.getUsers().parallelStream().filter(user -> user.getAddress().equals(address)).findAny();
+        return this.getUsers().parallelStream().filter(user -> user.getAddress().getAddress().toString().equals(address.getAddress().toString())).findAny();
     }
 }

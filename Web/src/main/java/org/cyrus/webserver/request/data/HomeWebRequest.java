@@ -20,7 +20,7 @@ public class HomeWebRequest implements WebRequest {
     @Override
     public void onRequest(RequestContext onRequest) {
         try {
-            onRequest.setResource("html/layout.html");
+            onRequest.setResource("html/ChooseProject.html");
         } catch (IOException e) {
             e.printStackTrace();
         }

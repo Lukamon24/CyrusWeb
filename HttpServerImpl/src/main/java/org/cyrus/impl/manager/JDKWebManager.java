@@ -16,9 +16,10 @@ import java.util.stream.Collectors;
 
 public class JDKWebManager implements CyrusWebServerManager {
 
-    private HttpServer server;
+    private final HttpServer server;
     private final Set<WebState> states = new HashSet<>();
     private final Set<WebRequest> requestHandlers = new HashSet<>();
+    private final Set<User> users = new HashSet<>();
 
     public JDKWebManager(HttpServer server) {
         this.server = server;
@@ -41,7 +42,10 @@ public class JDKWebManager implements CyrusWebServerManager {
 
     @Override
     public User register(InetSocketAddress address) {
-        return new CyrusUser(address);
+        User user = new CyrusUser(address);
+        this.users.add(user);
+        System.out.println("New user logged in with " + user.getAddress().toString());
+        return user;
     }
 
     @Override
