@@ -1,12 +1,13 @@
-package org.cyrus.webserver.request.data;
+package org.cyrus.webserver.request.data.login;
 
+import org.cyrus.webserver.request.ContentType;
 import org.cyrus.webserver.request.RequestContext;
 import org.cyrus.webserver.request.RequestType;
 import org.cyrus.webserver.request.WebRequest;
 
 import java.io.IOException;
 
-public class HomeWebRequest implements WebRequest {
+public class LoginStyleSheetRequest implements WebRequest {
     @Override
     public RequestType getType() {
         return RequestType.GET;
@@ -14,13 +15,14 @@ public class HomeWebRequest implements WebRequest {
 
     @Override
     public String[] getEndPoints() {
-        return new String[]{"/", "/index"};
+        return new String[]{"/login/global.css"};
     }
 
     @Override
     public void onRequest(RequestContext onRequest) {
+        onRequest.setContentType(ContentType.TEXT_CSS);
         try {
-            onRequest.setResource("html/ChooseProject.html");
+            onRequest.setResource("css/ChooseProject.css");
         } catch (IOException e) {
             e.printStackTrace();
         }

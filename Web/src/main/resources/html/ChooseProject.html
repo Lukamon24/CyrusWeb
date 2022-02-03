@@ -1,17 +1,41 @@
 <html>
-<head>
+  <head>
     <title>Cyrus - Choose project</title>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./login/global.css" />
 
-</head>
-<body>
-<div style="display: flex; background-color: gray; margin: auto" class="h-50 w-50">
-    <div class="w-50 h-100">
-        <p class="text-center"><strong>Projects</strong></p>
+    <script src="./login/global.js"></script>
+  </head>
+  <body onload="onUpdateProjects()">
+    <div style="margin: auto" class="w-50 container">
+      <div class="row">
+        <div class="col-xl">
+          <div class="w-100">
+            <p class="text-center" style=""><strong>Cyrus</strong></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+          <p class="basic-button" onclick="selectProject()">Project</p>
+        </div>
+        <div class="col-sm">
+          <p class="basic-button" onclick="selectHelp()">Help</p>
+        </div>
+      </div>
+      <div class="row">
+        <div id="options" style="display: flex" class="col-xl"></div>
+      </div>
+      <div class="row project-half">
+        <div class="col-sm">
+          <p class="text-center"><strong>Projects</strong></p>
+          <div id="project-list"></div>
+        </div>
+        <div class="col-sm">
+          <p class="text-center"><strong>Info</strong></p>
+          <div id="info-list"></div>
+        </div>
+      </div>
     </div>
-    <div class="w-50 h-100">
-        <p class="text-center"><strong>Info</strong></p>
-    </div>
-</div>
-</body>
+  </body>
 </html>

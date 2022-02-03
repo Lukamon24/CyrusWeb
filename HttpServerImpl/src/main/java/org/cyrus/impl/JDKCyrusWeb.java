@@ -49,6 +49,8 @@ public class JDKCyrusWeb extends CyrusWeb {
 
 
         web.setServerManager(webManager);
+        web.init();
+
         server.start();
 
         System.out.println("server: http://localhost:" + server.getAddress().getPort());

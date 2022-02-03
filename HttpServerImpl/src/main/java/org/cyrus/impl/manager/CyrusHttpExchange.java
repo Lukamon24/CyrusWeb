@@ -1,14 +1,19 @@
 package org.cyrus.impl.manager;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.cyrus.file.FileSerializerTypes;
+import org.cyrus.file.common.generic.AbstractSerializerObject;
+import org.cyrus.impl.manager.send.DataSender;
+import org.cyrus.impl.manager.send.JSONDataSender;
+import org.cyrus.impl.manager.send.RawDataSender;
 import org.cyrus.webserver.request.RequestContext;
 import org.cyrus.webserver.request.RequestType;
 import org.cyrus.webserver.state.WebState;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -16,30 +21,22 @@ public class CyrusHttpExchange implements RequestContext {
 
     private final HttpExchange exchange;
     private final WebState state;
-    private final String[] endpoints;
-    private final Map<String, String> body;
-    private String toSend;
+    private DataSender toSend;
     private int status = 200;
 
-    public CyrusHttpExchange(HttpExchange exchange, WebState state, String... endpoints) {
+    public CyrusHttpExchange(HttpExchange exchange, WebState state) {
         this.exchange = exchange;
         this.state = state;
-        this.endpoints = endpoints;
 
         InputStream stream = this.exchange.getRequestBody();
         BufferedReader br = new BufferedReader(new InputStreamReader(stream));
-        this.body = br
-                .lines()
-                .map(line -> line.split("="))
-                .filter(line -> line.length==2)
-                .collect(Collectors.toMap(line -> line[0], line -> line[1]));
     }
 
     int getStatus() {
         return this.status;
     }
 
-    Optional<String> getToSend() {
+    Optional<DataSender> getToSend() {
         return Optional.of(this.toSend);
     }
 
@@ -55,39 +52,27 @@ public class CyrusHttpExchange implements RequestContext {
     }
 
     @Override
-    public String[] getEndpoint() {
-        return this.endpoints;
+    public String getEndpoint() {
+        return this.exchange.getRequestURI().getPath();
     }
 
     @Override
-    public Optional<String> getString(String key) {
-        return Optional.ofNullable(this.body.get(key));
+    public AbstractSerializerObject getJson() throws IOException {
+        InputStream is = this.exchange.getRequestBody();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        String json = br.lines().collect(Collectors.joining(""));
+        br.close();
+        return FileSerializerTypes.JSON.deserialize(json);
     }
 
     @Override
-    public Optional<Integer> getInt(String key) {
-        return Optional.ofNullable(this.body.get(key)).map(Integer::parseInt);
-
-    }
-
-    @Override
-    public Optional<Double> getDouble(String key) {
-        return Optional.ofNullable(this.body.get(key)).map(Double::parseDouble);
-
-    }
-
-    @Override
-    public void set(String key, Object value) {
-        if (this.toSend.isEmpty()) {
-            this.toSend = key + "=" + value.toString();
-            return;
-        }
-        this.toSend = this.toSend + "\n" + key + "=" + value.toString();
+    public void setJson(AbstractSerializerObject object) {
+        this.toSend = new JSONDataSender(object);
     }
 
     @Override
     public void setRaw(String value) {
-        this.toSend = value;
+        this.toSend = new RawDataSender(value);
     }
 
     @Override

@@ -1,12 +1,12 @@
 package org.cyrus.webserver.request;
 
+import org.cyrus.file.common.generic.AbstractSerializerObject;
 import org.cyrus.webserver.state.WebState;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public interface RequestContext {
@@ -15,18 +15,13 @@ public interface RequestContext {
 
     RequestType getType();
 
-    String[] getEndpoint();
+    String getEndpoint();
 
-    Optional<String> getString(String key);
+    AbstractSerializerObject getJson() throws IOException;
 
-    Optional<Integer> getInt(String key);
-
-    Optional<Double> getDouble(String key);
-
-    void set(String key, Object value);
+    void setJson(AbstractSerializerObject object);
 
     void setRaw(String value);
-
 
     void setHeader(String key, String value);
 

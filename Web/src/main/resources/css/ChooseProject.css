@@ -1,0 +1,25 @@
+.basic-button {
+  width: 6rem;
+  margin: 4px;
+  border-style: double;
+  border-color: transparent;
+}
+
+.basic-button:hover {
+  width: 6.5rem;
+  border-color: black;
+  border-style: double;
+}
+
+.project-half {
+  background-color: black;
+  color: white;
+}
+
+#project-list {
+  background-color: darkgray;
+}
+
+#info-list {
+  background-color: darkgray;
+}
