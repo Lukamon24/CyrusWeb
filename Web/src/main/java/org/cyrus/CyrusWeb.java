@@ -20,8 +20,6 @@ public abstract class CyrusWeb {
 
     protected void init() {
         this.serializeManager.register(DataSerializers.getVanillaData());
-
-        this.projectManager.register(new Project("1", "name1"));
     }
 
     protected CyrusWeb setServerManager(CyrusWebServerManager manager) {

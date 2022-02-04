@@ -1,7 +1,7 @@
 function selectProject() {
   const options = document.getElementById("options");
   options.innerHTML =
-    '<p class="basic-button">New</p><p class="basic-button">Import</p><p class="basic-button">Git</p>';
+    '<a class="basic-button" href="./create/project">New</a><p class="basic-button">Import</p><p class="basic-button">Git</p>';
 }
 
 function selectHelp() {

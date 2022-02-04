@@ -27,7 +27,7 @@ public interface RequestContext {
 
     void addHeader(String key, String value);
 
-    default void setResource(String resourcePath) throws IOException {
+    default String setResource(String resourcePath) throws IOException {
         InputStream stream = this.getClass().getClassLoader().getResourceAsStream(resourcePath);
         if (stream==null) {
             throw new IllegalArgumentException("Unknown resource of " + resourcePath);
@@ -36,6 +36,7 @@ public interface RequestContext {
         String file = reader.lines().collect(Collectors.joining("\n"));
         this.setRaw(file);
         reader.close();
+        return file;
 
     }
 

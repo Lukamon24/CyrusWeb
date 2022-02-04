@@ -54,9 +54,16 @@ public class JDKCyrusWeb extends CyrusWeb {
         server.start();
 
         System.out.println("server: http://localhost:" + server.getAddress().getPort());
-        while (true) {
 
+        try {
+            System.in.read();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("Stopping");
+        server.stop(2);
+        System.out.println("Stopped");
+
 
     }
 }

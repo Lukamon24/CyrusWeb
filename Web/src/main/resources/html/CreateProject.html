@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <title>Cyrus - Create Project</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" />
+    <script src="./project/global.js"></script>
+  </head>
+  <body onload="onLoad()">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl">
+          <p class="text-center">Create Project</p>
+        </div>
+      </div>
+      <form onsubmit="return onProjectSubmit()">
+        <div class="row">
+          <div class="col">
+            <label for="name">Name</label>
+            <input
+              id="name"
+              type="text"
+              pattern="^[A-Za-z\s]+$"
+              class="form-control"
+              oninput="validateNameInput()"
+              required
+            />
+          </div>
+          <div class="col">
+            <label for="version">Version</label>
+            <input
+              id="version"
+              type="text"
+              class="form-control"
+              placeholder="1.0.0-SNAPSHOT"
+              required
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <label for="group">Group ID</label>
+            <input
+              id="group"
+              type="text"
+              pattern="[a-z.]*"
+              class="form-control"
+              oninput="validateGroupInput()"
+              required
+            />
+            <small class="form-text text-muted"
+              >This is the group this project belongs to, typically this is your
+              top level domain followed by your second-level domain split by a
+              '.'. For example "org.cyrus"
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <label for="artifact">Artifact ID</label>
+            <input
+              id="artifact"
+              type="text"
+              pattern="[a-zA-Z]*"
+              class="form-control"
+              oninput="validateArtifactInput()"
+              required
+            />
+            <small class="form-text text-muted"
+              >This is the artifact for this project, typically this is the name
+              that others will reference this project when it comes to
+              maven/gradle dependencies, this typically is also your main class
+              name</small
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <div id="simple" class="form-check form-check-inline">
+              <input
+                id="simple"
+                name="build-type"
+                type="radio"
+                value="simple"
+                class="form-check-input"
+                checked
+              />
+              <label for="simple" class="form-check-label">Simple</label>
+            </div>
+            <div id="maven-div" class="form-check form-check-inline">
+              <input
+                id="maven"
+                name="build-type"
+                type="radio"
+                value="maven"
+                class="form-check-input"
+              />
+              <label for="maven" class="form-check-label">Maven</label>
+            </div>
+            <div id="gradle-div" class="form-check form-check-inline">
+              <input
+                id="gradle"
+                name="build-type"
+                type="radio"
+                value="gradle"
+                class="form-check-input"
+              />
+              <label for="gradle" class="form-check-label">Gradle</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <small class="form-text text-muted"
+              >The build environment for this project, this is used to create
+              the binary and can be used to assist with the dependencies (this
+              cannot be changed once created)</small
+            >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm">
+            <input
+              type="submit"
+              class="btn btn-primary"
+              value="Create Project"
+            />
+            <a href="../" class="btn btn-secondary">Cancel</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
