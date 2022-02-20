@@ -1,4 +1,4 @@
-package org.cyrus.webserver.request.data.login;
+package org.cyrus.webserver.request.data.get.chooser;
 
 import org.cyrus.webserver.request.ContentType;
 import org.cyrus.webserver.request.RequestContext;

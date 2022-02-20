@@ -11,15 +11,10 @@
   border-style: double;
 }
 
-.project-half {
-  background-color: black;
-  color: white;
+.card-body {
+  padding: 0% !important
 }
 
-#project-list {
-  background-color: darkgray;
-}
-
-#info-list {
-  background-color: darkgray;
+.table {
+  margin-bottom: 0% !important;
 }

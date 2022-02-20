@@ -1,0 +1,43 @@
+.window-body {
+  height: 100%;
+}
+
+.tab-section {
+  background-color: rgb(61, 61, 61);
+}
+
+.code-section {
+  background-color: rgb(50, 50, 50);
+  color: rgb(200, 200, 200);
+  overflow: auto;
+}
+
+.code-suggestion {
+  color: (255, 255, 255);
+}
+
+.code-input {
+  width: 100%;
+}
+
+.container {
+  max-width: none;
+}
+
+.primitive {
+  color: rgb(151, 0, 189);
+}
+
+.col-sm-8 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.col-sm-2 {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+p {
+  margin-bottom: 0px;
+}
