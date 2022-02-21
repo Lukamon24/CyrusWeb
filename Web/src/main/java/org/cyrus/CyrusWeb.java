@@ -1,6 +1,5 @@
 package org.cyrus;
 
-import org.cyrus.project.Project;
 import org.cyrus.project.ProjectManager;
 import org.cyrus.webserver.CyrusWebServerManager;
 import org.cyrus.webserver.request.serialize.DataSerializers;
@@ -9,8 +8,8 @@ import org.cyrus.webserver.request.serialize.SerializeManager;
 public abstract class CyrusWeb {
 
     private CyrusWebServerManager serverManager;
-    private SerializeManager serializeManager = new SerializeManager();
-    private ProjectManager projectManager = new ProjectManager();
+    private final SerializeManager serializeManager = new SerializeManager();
+    private final ProjectManager projectManager = new ProjectManager();
 
     private static CyrusWeb web;
 
