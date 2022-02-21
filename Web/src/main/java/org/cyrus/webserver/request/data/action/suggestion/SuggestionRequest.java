@@ -1,5 +1,6 @@
 package org.cyrus.webserver.request.data.action.suggestion;
 
+import org.cyrus.file.common.generic.AbstractSerializerArray;
 import org.cyrus.file.common.generic.AbstractSerializerObject;
 import org.cyrus.webserver.request.RequestContext;
 import org.cyrus.webserver.request.RequestType;
@@ -15,7 +16,7 @@ public class SuggestionRequest implements WebRequest {
 
     @Override
     public String[] getEndPoints() {
-        return new String[]{"/action/suggest/"};
+        return new String[]{"/action/suggest"};
     }
 
     @Override
@@ -26,8 +27,11 @@ public class SuggestionRequest implements WebRequest {
         entry.set("type", "field");
         entry.set("value", "test");
 
+        var array = new AbstractSerializerArray();
+        array.setRaw(0, entry);
 
-        temp.setRaw("suggestions", entry);
+
+        temp.setRaw("suggestions", array);
         onRequest.setJson(temp);
     }
 }

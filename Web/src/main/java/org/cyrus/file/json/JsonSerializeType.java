@@ -16,7 +16,10 @@ import java.util.stream.Collectors;
 public class JsonSerializeType implements FileSerializerType<AbstractSerializerObject, AbstractSerializerArray> {
     @Override
     public AbstractSerializerObject deserialize(String input) throws IOException {
-        return (AbstractSerializerObject) this.deserializeObject(input.substring(1, input.length() - 1), false);
+        if(input.startsWith("{") && input.endsWith("}")){
+            return (AbstractSerializerObject) this.deserializeObject(input.substring(1, input.length() - 1), false);
+        }
+        throw new IOException("Input is not json (" + input + ")");
     }
 
     private AbstractSerializerCommon<?> deserializeObject(String input, boolean array) {
