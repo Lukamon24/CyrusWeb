@@ -1,4 +1,4 @@
-package org.cyrus.webserver.request.data.login.create;
+package org.cyrus.webserver.request.data.get.chooser.create;
 
 import org.cyrus.utils.HtmlHelper;
 import org.cyrus.webserver.request.RequestContext;

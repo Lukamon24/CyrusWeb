@@ -1,41 +1,51 @@
 <html>
-  <head>
+<head>
     <title>Cyrus - Choose project</title>
-    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="./login/global.css" />
+    <link rel="stylesheet" href="./bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./login/global.css"/>
+
+    <!--script src="../js/ChooseProject.js"></script-->
+
+    <!--link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" /-->
+    <!--link rel="stylesheet" href="../css/ChooseProject.css" /-->
 
     <script src="./login/global.js"></script>
-  </head>
-  <body onload="onUpdateProjects()">
-    <div style="margin: auto" class="w-50 container">
-      <div class="row">
+
+</head>
+<body onload="onUpdateProjects()">
+<div style="margin: auto" class="container">
+    <div class="row">
         <div class="col-xl">
-          <div class="w-100">
-            <p class="text-center"><strong>Cyrus</strong></p>
-          </div>
+            <div class="w-100">
+                <p class="text-center"><strong>Cyrus</strong></p>
+            </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <p class="basic-button" onclick="selectProject()">Project</p>
-        </div>
-        <div class="col-sm">
-          <p class="basic-button" onclick="selectHelp()">Help</p>
-        </div>
-      </div>
-      <div class="row">
-        <div id="options" style="display: flex" class="col-xl"></div>
-      </div>
-      <div class="row project-half">
-        <div class="col-sm">
-          <p class="text-center"><strong>Projects</strong></p>
-          <div id="project-list"></div>
-        </div>
-        <div class="col-sm">
-          <p class="text-center"><strong>Info</strong></p>
-          <div id="info-list"></div>
-        </div>
-      </div>
     </div>
-  </body>
+    <ul class="nav nav-tabs">
+        <li class=nav-item>
+        <span id="project-tab" class="nav-link" aria-current="page" onclick="selectProject()">
+          Project
+        </span>
+        </li>
+        <li class="nav-item">
+            <span id="help-tab" class="nav-link" onclick="selectHelp()">Help</span>
+        </li>
+    </ul>
+    <div class="row">
+        <div class="tab-content col-xl">
+            <div id="options" style="display: flex" class="tab-pane"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <p class="text-center"><strong>Projects</strong></p>
+            <ul id="project-list" class="list-group"></ul>
+        </div>
+        <div class="col-sm-8">
+            <div id="info-list" class="card">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>

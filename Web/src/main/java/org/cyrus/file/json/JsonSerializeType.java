@@ -80,6 +80,9 @@ public class JsonSerializeType implements FileSerializerType<AbstractSerializerO
                 }
                 if (values.size()==2) {
                     String key = values.get(0);
+                    if (key.startsWith("\"") && key.endsWith("\"")) {
+                        key = key.substring(1, key.length() - 1);
+                    }
                     String value = values.get(1);
                     values.clear();
                     inQuote = false;
