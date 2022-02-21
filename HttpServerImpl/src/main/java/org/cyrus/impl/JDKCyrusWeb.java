@@ -9,6 +9,7 @@ import org.cyrus.webserver.request.WebRequests;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.URL;
+import java.util.Scanner;
 
 public class JDKCyrusWeb extends CyrusWeb {
 
@@ -55,15 +56,14 @@ public class JDKCyrusWeb extends CyrusWeb {
 
         System.out.println("server: http://localhost:" + server.getAddress().getPort());
 
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Type 'stop' to stop the server");
+        String stop = sc.nextLine();
+        if (stop.equalsIgnoreCase("stop")) {
+            System.out.println("Stopping");
+            server.stop(2);
+            System.out.println("Stopped");
         }
-        System.out.println("Stopping");
-        server.stop(2);
-        System.out.println("Stopped");
-
 
     }
 }
