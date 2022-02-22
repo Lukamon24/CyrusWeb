@@ -59,14 +59,16 @@ public class JDKCyrusWeb extends CyrusWeb {
         Scanner sc = new Scanner(System.in);
         System.out.println("Type 'stop' to stop the server");
         String stop = sc.nextLine();
-        if (stop.equals("stop")) {
-            System.out.println("Stopping");
-            server.stop(2);
-            System.out.println("Stopped");
-        } else {
-            System.out.println("Unknown Command");
-            return;
+        while (true) {
+            if (stop.equals("stop")) {
+                System.out.println("Stopping");
+                server.stop(2);
+                System.out.println("Stopped");
+                return;
+            } else {
+                System.out.println("Unknown command");
+                stop = sc.nextLine();
+            }
         }
-
     }
 }
