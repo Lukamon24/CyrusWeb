@@ -64,6 +64,7 @@ public class JDKCyrusWeb extends CyrusWeb {
             server.stop(2);
             System.out.println("Stopped");
         } else {
+            System.out.println("Unknown Command");
             return;
         }
 
