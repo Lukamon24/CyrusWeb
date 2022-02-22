@@ -60,6 +60,7 @@ function onIncome(line) {
 function onInput(event) {
   if (event.key === "Enter" || event.keyCode === 13) {
     const input = document.getElementById("code-input");
+    document.getElementById("code-suggestion").innerHTML = "";
     onIncome(input.value);
     input.value = "";
   }
@@ -100,7 +101,8 @@ async function onInputTyped(event) {
 }
 
 async function onPost(endpoint, body) {
-  const fet = await fetch(endpoint, {
+  const fet = await fetch("../" + endpoint, {
+    method: "post",
     body,
   });
   return await fet.json();

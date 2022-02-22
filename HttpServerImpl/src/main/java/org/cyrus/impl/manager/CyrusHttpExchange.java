@@ -42,7 +42,7 @@ public class CyrusHttpExchange implements RequestContext {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.sent = null;
+        this.sent = sent;
 
     }
 
@@ -78,11 +78,10 @@ public class CyrusHttpExchange implements RequestContext {
 
     @Override
     public AbstractSerializerObject getJson() throws IOException {
-        InputStream is = this.exchange.getRequestBody();
-        BufferedReader br = new BufferedReader(new InputStreamReader(is));
-        String json = br.lines().collect(Collectors.joining(""));
-        br.close();
-        return FileSerializerTypes.JSON.deserialize(json);
+        if(this.sent == null){
+            throw new IOException("No json found in body of request");
+        }
+        return this.sent;
     }
 
     @Override
