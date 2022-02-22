@@ -63,6 +63,8 @@ public class JDKCyrusWeb extends CyrusWeb {
             System.out.println("Stopping");
             server.stop(2);
             System.out.println("Stopped");
+        } else {
+            return;
         }
 
     }
